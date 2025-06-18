@@ -1,4 +1,4 @@
-# Active Directory Configuration
+# Active Directory Domain Controller Setup
 
 <p align="center">
   <img src="https://i.imgur.com/gUKUoFk.png" alt="Azure Setup" width="500"/>
