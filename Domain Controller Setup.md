@@ -13,7 +13,7 @@
 2. Click **+ Create** to start a new resource group. ➕
 3. **Fill in the Details**:
    - **Subscription**: Choose your subscription. 📑
-   - **Resource Group Name**: Enter a unique name (e.g., `LabRG`). 🏷️
+   - **Resource Group Name**: Enter a relevant name (e.g., `Active-Directory-Lab`). 🏷️
    - **Region**: Select the region where you want to deploy your resources (e.g., **East US**). 🌍
 4. Ensure **Validation Passed** appears, then click **Create** to deploy the resource group. ✅
 
@@ -47,8 +47,10 @@
    - **VM Name**: Name the VM `dc-1` (Domain Controller). 🏢
    - **Region**: Choose the same region as your VNet. 🌎
    - **Image**: Select **Windows Server 2022**. 💻
-   - **Size**: Choose an appropriate size (e.g., Standard B1s). ⚙️
-   - **Authentication**: Choose a username and password or SSH key for access. 🔑
+
+     > **Note**: When selecting the image, **do not choose the Windows Server Core version**. Ensure you select a version with the **Desktop Experience** for a GUI-based interface.
+   - **Size**: Pick a VM size with at least **2 vCPUs**⚙️
+   - **Authentication**: Choose a username and password for access. 🔑
 
    <img src="https://i.imgur.com/AljwqKt.png" alt="VM Configuration" width="400"/>
    <img src="https://i.imgur.com/noHmq5S.png" alt="VM Networking" width="400"/>
@@ -65,18 +67,24 @@
    ## Step 4: Set Static IP and Disable Firewall 🔒
 
 1. **Go to the Networking Tab** for the `dc-1` VM after creation. 🌐
-2. **Set the Private IP to Static**:
-   - In the **Networking** section, ensure that the **Private IP** is set to **Static**. This ensures that the IP address doesn’t change after reboots.
+2. **Navigate to Network Settings**:
+   - Under the **Networking** tab, go to **Network Settings**.
+   - Click on **Network Interface** to view the network settings for the VM.
+3. **Set the Private IP to Static**:
+   - Under the **IP Configuration**, click on **IP Configuration**.
+   - Change the **Private IP address settings** from **Dynamic** to **Static**.
    
-   <img src="https://i.imgur.com/AGyRMSq.png" alt="Static IP Configuration" width="500"/>
+   <img src="https://i.imgur.com/gYmKwyO.png" alt="Static IP Configuration" width="500"/>
 
-3. **Disable the Firewall**:
+4. **Log into dc-1 **:
+   - Use **RDP** to log into the `dc-1` VM. 🔑
+5. **Disable the Firewall**:
    - Open **Windows Defender Firewall with Advanced Security** on `dc-1`.
    - In the left pane, select **Windows Defender Firewall with Advanced Security**.
    - For each of the **Domain**, **Private**, and **Public** profiles, turn off the firewall by selecting **Turn off Windows Defender Firewall**.
  
  <img src="https://i.imgur.com/opqOoFj.png" alt="Static IP Configuration" width="500"/>
-4. Once these changes are made, the VM should be ready for the next configuration steps.
+6. Once these changes are made, the VM should be ready for the next configuration steps.
 
 ---
 
