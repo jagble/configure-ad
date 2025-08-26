@@ -96,7 +96,7 @@
    - **Resource Group**: Select the same resource group as `dc-1`. 🏷️
    - **VM Name**: Name the VM `client-1` (Client Machine). 🏢
    - **Region**: Choose the same region as `dc-1` and the VNet. 🌎
-   - **Image**: Select **Windows 10**. 💻
+   - **Image**: Select **Windows 11 Pro**. 💻
    - **Size**: Choose a size with at least **2 vCPUs** (e.g., **Standard B2s**). ⚙️
    - **Authentication**: Choose a username and password for access. 🔑
 
