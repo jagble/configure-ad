@@ -20,3 +20,4 @@
 3. **Save the file to the Desktop** with a name like `createusers.ps1`.  
 4. Copy and paste the script into the file. You can access it directly here: [Generate Names Script](docs/Generate-Names-Create-Users.ps1)  
 5. Save the file after pasting the script.
+6. **Run the script** to generate users for the domain. ⚡
