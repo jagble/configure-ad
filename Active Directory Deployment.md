@@ -89,13 +89,13 @@
 
 2. Fill out the user information for **Jane Doe**:  
 
-   <img src="https://i.imgur.com/wyhYy19.png" alt="Filling Out Jane Doe Info" width="600"/>
+   <img src="https://i.imgur.com/wyhYy19.png" alt="Filling Out Jane Doe Info" width="400"/>
 
 3. Set the password to `Password123` and configure the password settings:  
    - Uncheck **“User must change password at next logon”**  
    - Check **“Password never expires”**  
 
-   <img src="https://i.imgur.com/93LzelZ.png" alt="Password Settings for Jane Doe" width="600"/>
+   <img src="https://i.imgur.com/93LzelZ.png" alt="Password Settings for Jane Doe" width="400"/>
 
 4. Once done, the user creation is complete and should look like this:  
 
@@ -105,6 +105,46 @@
    - Right-click on `Jane Doe` → **Properties** → **Member Of** → **Add**  
    - Type `Domain Admins`, click **Check Names**, then click **Apply**  
 
-   <img src="https://i.imgur.com/Blknm0u.png" alt="Adding Jane to Domain Admins Group" width="600"/>
+   <img src="https://i.imgur.com/Blknm0u.png" alt="Adding Jane to Domain Admins Group" width="400"/>
 
-6. **Log out of dc-1** and log back in as the new domain admin:
+6. **Log out of dc-1** and log back in as the new domain admin account:  
+
+   ```text
+   Username: mydomain.com\jane_admin
+   Password: Password123
+
+  <img src="https://i.imgur.com/4EyIX81.png" alt="Logging in as Jane Doe" width="400"/>
+
+
+
+## Step 6: Join Client VM to the Domain 🌐💻
+
+1. **Keep `dc-1` open** while logged in as Jane Doe. Open a **new RDP session** and log into `client-1`.
+
+2. On `client-1`, **right-click the Start Menu** and go to **System**.
+
+3. Scroll down and click **Advanced system settings**.
+
+4. In the pop-up window, click on **Computer Name** → **Change**:  
+
+   <img src="https://i.imgur.com/YxYGqoX.png" alt="Computer Name Change" width="400"/>
+
+5. Select **Domain**, type `mydomain.com`, and click **OK**.
+
+6. When prompted, log in using the **domain admin account**:  
+
+   ```text
+   Username: mydomain.com\jane_admin
+   Password: Password123
+
+**Verify** in `dc-1` that `client-1` is now a member of the domain:
+   - Open **Active Directory Users and Computers**
+   - Look under the **Computers** folder and ensure `client-1` is listed.
+
+## Step 7. Create OU for Clients 📂
+
+1. In **Active Directory Users and Computers**, right-click your domain → **New** → **Organizational Unit**.
+
+2. Name the OU: `_CLIENTS`
+
+3. Drag `client-1` from the **Computers** folder into the `_CLIENTS` OU.
