@@ -98,8 +98,8 @@ Observe events:
   <img src="https://i.imgur.com/EF7ZmzJ.png" alt="Event Viewer Logs" width="500"/>
 
 
-Notes:
 
-These steps simulate real-world IT tasks, including account lockouts, unlocking accounts, disabling/enabling accounts, and monitoring logs.
 
-This workflow demonstrates standard procedures an IT specialist would perform in a corporate Active Directory environment.
+> These steps simulate real-world IT tasks, including account lockouts, unlocking accounts, disabling/enabling accounts, and monitoring logs.
+
+> This workflow demonstrates standard procedures an IT specialist would perform in a corporate Active Directory environment.
