@@ -9,130 +9,97 @@ This section demonstrates how to manage **account lockouts, disabling/enabling a
 
 # Configuration Steps
 
-This section demonstrates how to manage **account lockouts, disabling/enabling accounts**, and observing logs in a domain environment using Active Directory and Group Policy.
+
+## Step 1: Prepare the account lockout scenario
+1. Log into **DC-1**.
+2. Pick a random user account created previously.
+3. On **Client-1**, attempt to log in with that user **10 times using an incorrect password**.  
+   - Observe that the account is not locked yet, since the default policy isn’t configured.
 
 ---
 
-## Step 1: Log in and simulate a lockout
-1. Log into **DC-1** as `mydomain.com\jane_admin`.
-2. Pick a **random user** created previously in the `_EMPLOYEES` OU.
-3. Attempt to log into **Client-1** **10 times** with a **wrong password**.
-4. Observe that the account is **not actually locked yet** in Active Directory.
+## Step 2: Configure Account Lockout Policy
+1. On **DC-1**, open the **Group Policy Management Console**:
+
+<img src="https://i.imgur.com/Guc7Bs6.png" alt="Group Policy Management" width="600"/>
+
+2. Expand **Forest → Domains → mydomain.com**.
+3. Right-click **Default Domain Policy** → **Edit**:
+
+<img src="https://i.imgur.com/BfUrYku.png" alt="Default Domain Policy" width="600"/>
+
+4. Navigate to:
+
+`Computer Configuration → Policies → Windows Settings → Security Settings → Account Policies → Account Lockout Policy`
+
+5. Configure the following:
+
+- **Account Lockout Duration:** 30 minutes  
+- **Account Lockout Threshold:** 5 invalid login attempts  
+- **Reset Account Lockout Counter:** 15 minutes  
+
+<img src="https://i.imgur.com/oRQNs7Q.png" alt="Account Lockout Policy Settings" width="600"/>
+
+6. Click **Apply** and exit the editor.
 
 ---
 
-## Step 2: Open Group Policy Management
-1. On **DC-1**, click **Start** and type:
+## Step 3: Apply Group Policy on Client-1
+1. On **Client-1**, log in as `mydomain.com\jane_admin`.
+2. Open **Command Prompt** and run:
 
-   ```text
-   gpmc.msc
-
-2. Open Group Policy Management Console
-
-  Figure 1: Group Policy Management Console
-
-3. Expand the tree:
-
-  - Forest → mydomain.com → Domains → mydomain.com
-
-4. Find Default Domain Policy:
-
-   Figure 2: Locating Default Domain Policy
-
-5. Right-click Default Domain Policy and select Edit.
-
-
-## Step 3: Configure Account Lockout Policy
-
-Navigate to:
-
-Computer Configuration → Policies → Windows Settings → Security Settings → Account Policies → Account Lockout Policy
-
-
-Modify the following settings:
-
-
-Figure 3: Account Lockout Policy settings
-
-Account lockout duration: 30 minutes
-
-Account lockout threshold: 5 invalid attempts
-
-Reset account lockout counter: 15 minutes
-
-Press Apply and exit the editor.
-
-
-## Step 4: Force Group Policy Update on Client
-
-Log into Client-1 as mydomain.com\jane_admin.
-
-Open Command Prompt as administrator.
-
-Run the following command:
-
+```cmd
 gpupdate /force
+```
+
+ <img src="https://i.imgur.com/xAq77sm.png" alt="Forcing GPUpdate" width="500"/>
+
+## Step 4: Lock and unlock the account
+
+Log out from Client-1 as Jane Admin.
+Attempt to log in as the random user with the wrong password 7 times.
+The account should now be locked.
+Go back to DC-1 → ADUC, locate the random user:
 
 
+  <img src="https://i.imgur.com/hYf9O1X.png" alt="Unlocking Random User" width="600"/>
 
-Figure 4: Forcing Group Policy update on Client-1
+Right-click → Properties, unlock the account, and apply changes.
 
-Wait for the confirmation that the policy has been updated.
+---
 
+## Step 5: Test the account login
 
-## Step 5: Test Lockout
+Log back into Client-1 as the random user with the correct password: Password1.
 
-Log out of Jane Admin on Client-1.
+  <img src="https://i.imgur.com/yVgFLVm.png" alt="Logging back in as Random User" width="600"/>
 
-Log in with the random user and attempt 7 invalid login attempts.
+---
 
-The account should now display a locked account message.
+## Step 6: Disable and enable accounts
 
-On DC-1, open Active Directory Users and Computers:
-
-Navigate to the random user account.
-
-Right-click → Properties.
-
-Check Unlock account and click Apply.
+In ADUC, right-click the same user account → Disable Account.
+Attempt login on Client-1 → login fails.
+Re-enable the account → login succeeds.
 
 
-Figure 5: Unlocking the user account in Active Directory
+---
 
-Return to Client-1 and log in with the unlocked account:
+## Step 7: Observe logs in Event Viewer
 
+On DC-1, open Event Viewer to observe security logs related to account lockouts.
 
-Figure 6: Logging in as the unlocked user
+If prompted, log in as Jane Admin:
 
-## Step 6: Disable and Enable Accounts
+  <img src="https://i.imgur.com/FWhdqLk.png" alt="Event Viewer Login as Jane Admin" width="300"/>
 
-On DC-1, pick a random user.
+Observe events:
 
-Right-click → Properties → uncheck Account is enabled.
-
-Attempt to log in on Client-1 with that account:
-
-You should see a login failure.
-
-Re-enable the account and test logging in again.
+  <img src="https://i.imgur.com/EF7ZmzJ.png" alt="Event Viewer Logs" width="500"/>
 
 
-## Step 7: Observing Logs
+Notes:
 
-Open Event Viewer on DC-1 and Client-1.
+These steps simulate real-world IT tasks, including account lockouts, unlocking accounts, disabling/enabling accounts, and monitoring logs.
 
-
-Figure 7: Event Viewer showing logs
-
-When prompted for administrator privileges, log in as Jane Admin:
-
-
-Figure 8: Logging in as Jane Admin for Event Viewer
-
-Observe the Security Logs for:
-
-Account lockouts
-
-Failed login attempts
-
-Successful logins
+This workflow demonstrates standard procedures an IT specialist would perform in a corporate Active Directory environment.
