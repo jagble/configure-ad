@@ -5,12 +5,28 @@
 </p>
 
 ## Objective 
-The objective of this lab is to demonstrate the deployment and management of an Active Directory environment in Azure. You will learn how to:  
+This project is a **hands-on tutorial and walkthrough** for deploying and managing an Active Directory environment in a Windows Server ecosystem.  
+It simulates real-world IT administration tasks, including creating users, joining clients to a domain, and configuring group policies.  
+The lab is designed for IT professionals or students looking to gain practical experience with **Active Directory, domain management, and account security practices**.
 
 - Deploy a Windows Server 2022 domain controller  
 - Promote it to an Active Directory domain controller  
 - Create and manage users and organizational units  
-- Join client machines to the domain and apply group policies  
+- Join client machines to the domain and apply group policies
+
+## 🖋️ Languages Used
+- PowerShell 🟦  
+
+## 🏢 Environments Used
+- Windows Server 2022 (Domain Controller) 🖥️  
+- Windows 10/11 (Client machines) 💻  
+
+## 🛠️ Technologies / Applications / Services Used
+- Active Directory Domain Services 📂  
+- Group Policy Management Console  ⚙️  
+- Remote Desktop Protocol (RDP) 🖱️  
+- Event Viewer 📊  
+- PowerShell ISE 🔹
 
 ---
 
