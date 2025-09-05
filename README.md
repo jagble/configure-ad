@@ -17,11 +17,9 @@ The lab is designed for IT professionals or students looking to gain practical e
 ## 🖋️ Languages Used
 - PowerShell 🟦  
 
-## 🏢 Environments Used
+## 🏢 Environments and Technologies Used
 - Windows Server 2022 (Domain Controller) 🖥️  
 - Windows 10/11 (Client machines) 💻  
-
-## 🛠️ Technologies / Applications / Services Used
 - Active Directory Domain Services 📂  
 - Group Policy Management Console  ⚙️  
 - Remote Desktop Protocol (RDP) 🖱️  
