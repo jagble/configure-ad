@@ -26,6 +26,11 @@ The lab is designed for IT professionals or students looking to gain practical e
 - Event Viewer 📊  
 - PowerShell ISE 🔹
 
+## List of Prerequisites
+
+- [Microsoft Azure Account](https://portal.azure.com/)
+- Remote Desktop Client (RDP)
+
 ---
 
 ## Lab Sections
